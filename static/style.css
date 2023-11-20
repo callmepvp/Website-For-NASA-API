@@ -1,0 +1,97 @@
+/* style.css */
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+#transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+#textLinks {
+    display: flex;
+    justify-content: center;
+}
+
+#textLinks span {
+    margin: 0 10px;
+    cursor: pointer;
+    color: #FFFFFF;
+    transition: color 0.3s ease;
+
+
+    font-size: 24px;
+    color: #FFFFFF;
+    text-shadow: #ffffff 0 0 10px;
+}
+
+#textLinks span:hover {
+    color: #FFFFFF;
+}
+
+svg {
+	font-family: "Georgia", serif;
+	width: 100%;
+    height: 100%;
+
+    transform: scale(1.5);
+    transform-origin: center center;
+    
+    
+}
+
+svg text {
+	animation: stroke 4s forwards;
+	stroke-width: 2;
+	stroke: #A01A97;
+
+	font-size: 95px;
+    fill: rgba(97, 44, 204, 1);
+    text-shadow: 0 0 10px rgba(255, 45, 149, 0.8), 0 0 20px rgba(255, 45, 149, 0.6), 0 0 30px rgba(255, 45, 149, 0.4), 0 0 40px rgba(255, 45, 149, 0.2), 0 0 50px rgba(255, 45, 149, 0.1); /* Adjust the text-shadow values */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+@keyframes stroke {
+	0%   {
+		fill: rgba(231,17,160,0); stroke: rgba(160,26,151,1);
+		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+	}
+	70%  {fill: rgba(231,17,160,0); stroke: rgba(160,26,151,1); }
+	80%  {fill: rgba(231,17,160,0); stroke: rgba(160,26,151,1); stroke-width: 3; }
+	100% {
+		fill: rgba(231,17,160,1); stroke: rgba(160,26,151,0);
+		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+	}
+}
+
+.wrapper {
+    background-color: #000000;
+    pointer-events: none;
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(3px); /* Adjust the blur amount as needed */
+}

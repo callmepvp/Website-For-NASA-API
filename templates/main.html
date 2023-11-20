@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="wrapper">
+        <svg>
+            <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                NASA
+            </text>
+        </svg>
+    </div>
+
+    <div id="textLinks">
+        <span onclick="animateTransition(1)">APOD</span>
+        <span onclick="animateTransition(2)">NeoWS</span>
+    </div>
+
+    <div id="transition-overlay"></div>
+
+    <!-- Container for Particles -->
+    <div id="particles-js"></div>
+
+    <!-- Particles.js -->
+    <script src="{{ url_for('static', filename='particles.js') }}"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'star', stroke: { width: 0, color: '#000000' }, polygon: { nb_sides: 5 } },
+                opacity: { value: 0.8, random: true, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 2, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false, attract: { enable: false, rotateX: 600, rotateY: 600 } }
+            },
+            interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'repulse' }, resize: true }, modes: { grab: { distance: 200, line_linked: { opacity: 1 } }, repulse: { distance: 100, duration: 0.4 } } },
+            retina_detect: true
+        });
+    </script>
+
+    <script>
+        function animateTransition(pageNumber) {
+            let destination;
+
+            switch(pageNumber) {
+                case 1:
+                    destination = "{{ url_for('page1') }}";
+                    break;
+                
+                case 2:
+                    destination = "{{ url_for('page2') }}";
+                    break;
+            }
+
+            const overlay = document.getElementById('transition-overlay');
+            overlay.style.opacity = 1;
+
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 500);
+        }
+
+        // Reload the page when navigating back
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        };
+    </script>
+    
+</body>
+</html>
