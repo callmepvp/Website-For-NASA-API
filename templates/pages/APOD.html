@@ -1,11 +1,60 @@
+<!-- APOD.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>APOD Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='apod-style.css') }}">
 </head>
 <body>
-    <h1>Tissi veebisait 1</h1>
+    <h1>Astronomy Picture of the Day</h1>
+
+    <!-- Date input form -->
+    <form id="dateForm">
+        <label for="dateInput">Enter a date (YYYY-MM-DD):</label>
+        <input type="text" id="dateInput" name="dateInput" required>
+        <button id="showApodButton" type="button" onclick="fetchAPOD()">Show APOD</button>
+    </form>
+
+    <!-- Container to display APOD content -->
+    <div id="apod-container">
+        <!-- APOD content will be dynamically loaded here -->
+    </div>
+
+    <!-- Your JavaScript code -->
+    <script>
+        // Function to fetch APOD based on user input date or today's date
+        async function fetchAPOD() {
+            const apiKey = 'xOJtXktaBxgpQRQyeACT0dblt2j9xDsOba6uKdLS';
+            let dateInput = document.getElementById('dateInput').value;
+
+            if (!dateInput) {
+                return;
+            }
+
+            const apodUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${dateInput}`;
+
+            try {
+                const response = await fetch(apodUrl);
+                const data = await response.json();
+
+                // Update the HTML with APOD content
+                document.getElementById('apod-container').innerHTML = `
+                    <h2>${data.title}</h2>
+                    <img src="${data.url}" alt="${data.title}" />
+                    <p>${data.explanation}</p>
+                `;
+            } catch (error) {
+                document.getElementById('apod-container').innerHTML = '<p>Error loading APOD data.</p>';
+
+                console.error('Error fetching APOD data:', error);
+                alert('Error fetching APOD data.'); // Show an alert for general error
+            }
+        }
+
+        // Call the function to fetch APOD when the page loads
+        window.onload = fetchAPOD;
+    </script>
 </body>
 </html>

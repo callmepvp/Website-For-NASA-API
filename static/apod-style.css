@@ -1,0 +1,70 @@
+/* apod-style.css */
+
+body {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    font-family: 'Your Chosen Font', sans-serif; /* Update with your chosen font */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+h1 {
+    text-align: center; /* Center-align the header */
+
+    transform: scale(1.5);
+    color: #FFFFFF;
+    background: black;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+}
+
+#showApodButton {
+    background-color: white; /* Neon green background color */
+    color: #000; /* Black text color */
+    padding: 4px 16px; /* Adjust padding for button size */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 14px; /* Adjust font size */
+}
+
+#dateForm {
+    text-align: center; /* Center-align the form */
+    margin-top: 20px; /* Add margin for separation */
+}
+
+#dateInput {
+    width: 150px; /* Set a fixed width for the input field */
+    padding: 4px; /* Add padding for input field size */
+    border: none; /* Remove input field border */
+    border-radius: 5px; /* Add rounded corners */
+}
+
+#apod-container {
+    text-align: center; /* Center-align the container */
+    max-width: 100%; /* Set a maximum width for the container */
+    margin-top: 20px; /* Add margin for separation */
+    width: 100%; /* Ensure the container spans the full width */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+#apod-container img {
+    width: 100%; /* Set a fixed width for the image */
+    max-width: 600px; /* Set a maximum width for the image */
+    height: auto;
+    border: 2px solid #39ff14; /* Neon green border for the image */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Slight shadow effect */
+    transition: border 0.3s ease-in-out;
+}
+
+p {
+    margin-top: 10px;
+    text-align: center; /* Center-align the description */
+    max-width: 100%; /* Set the maximum width to 100% */
+    padding: 0 20px; /* Add padding for better readability */
+    box-sizing: border-box; /* Include padding in the max-width calculation */
+}
