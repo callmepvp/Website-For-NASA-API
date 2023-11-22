@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
+}
+
+#nasa-iva-results {
+    margin-top: 20px;
+}
+
+.nasa-iva-item {
+    display: inline-block;
+    margin: 10px;
+}
+
+.nasa-iva-item img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.nasa-iva-item p {
+    margin-top: 5px;
+    color: #666;
+}

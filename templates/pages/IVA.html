@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IVA Search</title>
+    <link rel="stylesheet" href="iva-style.css">
+</head>
+<body>
+
+    <h1>NASA IVA Search</h1>
+
+    <form id="keywordForm">
+        <label for="keywordInput">Enter a keyword:</label>
+        <input type="text" id="keywordInput" name="keywordInput" required>
+        <button type="button" onclick="fetchNASAIVA()">Search NASA IVA</button>
+    </form>
+
+    <div id="nasa-iva-results">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function fetchNASAIVA() {
+            const apiKey = 'xOJtXktaBxgpQRQyeACT0dblt2j9xDsOba6uKdLS';
+            const keywordInput = document.getElementById('keywordInput').value;
+
+            const maxResults = 5;
+
+            if (!keywordInput) {
+                alert('Please enter a keyword.');
+                return;
+            }
+
+            const nasaIVAUrl = `https://images-api.nasa.gov/search?q=${keywordInput}&media_type=image`;
+
+            $.getJSON(nasaIVAUrl, function (data) {
+                const nasaIVAResults = document.getElementById('nasa-iva-results');
+                nasaIVAResults.innerHTML = '';
+
+                const itemsToDisplay = Math.min(data.collection.items.length, maxResults);
+
+                if (itemsToDisplay === 0) {
+                    nasaIVAResults.innerHTML = '<p>No results found.</p>';
+                    return;
+                }
+
+                for (let i = 0; i < itemsToDisplay; i++) {
+                    const item = data.collection.items[i];
+
+                    const nasaIVAItem = document.createElement('div');
+                    nasaIVAItem.classList.add('nasa-iva-item');
+
+                    const img = document.createElement('img');
+                    img.src = item.links[0].href;
+                    img.alt = item.data[0].title;
+                    nasaIVAItem.appendChild(img);
+
+                    const title = document.createElement('p');
+                    title.textContent = item.data[0].title;
+                    nasaIVAItem.appendChild(title);
+
+                    nasaIVAResults.appendChild(nasaIVAItem);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

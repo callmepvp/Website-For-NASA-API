@@ -12,7 +12,11 @@ def page1():
 
 @app.route('/page2')
 def page2():
-    return render_template('pages/NeoWS.html')
+    return render_template('pages/ISS.html')
+
+@app.route('/page3')
+def page3():
+    return render_template('pages/IVA.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

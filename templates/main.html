@@ -18,15 +18,13 @@
 
     <div id="textLinks">
         <span onclick="animateTransition(1)">APOD</span>
-        <span onclick="animateTransition(2)">NeoWS</span>
+        <span onclick="animateTransition(2)">ISS</span>
+        <span onclick="animateTransition(3)">IVA</span>
     </div>
 
     <div id="transition-overlay"></div>
-
-    <!-- Container for Particles -->
     <div id="particles-js"></div>
 
-    <!-- Particles.js -->
     <script src="{{ url_for('static', filename='particles.js') }}"></script>
     <script>
         particlesJS('particles-js', {
@@ -56,6 +54,10 @@
                 case 2:
                     destination = "{{ url_for('page2') }}";
                     break;
+
+                case 3:
+                    destination = "{{ url_for('page3') }}";
+                    break;
             }
 
             const overlay = document.getElementById('transition-overlay');
@@ -66,7 +68,6 @@
             }, 500);
         }
 
-        // Reload the page when navigating back
         window.onpageshow = function(event) {
             if (event.persisted) {
                 window.location.reload();
