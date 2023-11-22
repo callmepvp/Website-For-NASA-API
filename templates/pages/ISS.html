@@ -31,7 +31,6 @@
     </div>
 
     <script>
-        
         function initMapAndMoveISS() {
             var map = L.map('map').setView([0, 0], 2);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -77,6 +76,27 @@
             moveISS();
         }
 
+        async function fetchLocationInfo(lat, lon) {
+            const apiKey = '48425913b2d94487b176a5867abe2ae0';
+
+            const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', apiUrl, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
+                            const country = data.results[0]?.components.country;
+                            resolve(country);
+                        } else {
+                            resolve(undefined);
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        }
 
         async function fetchData() {
             await fetchISSLocation();
@@ -92,7 +112,7 @@
                 const response = await fetch(issLocationUrl);
                 const data = await response.json();
 
-                document.getElementById('issLocationBox').innerHTML = generateISSLocationHTML(data);
+                document.getElementById('issLocationBox').innerHTML = await generateISSLocationHTML(data);
             } catch (error) {
                 document.getElementById('issLocationBox').innerHTML = '<p>Error loading ISS location data.</p>';
                 console.error('Error fetching ISS location data:', error);
@@ -113,13 +133,19 @@
             }
         }
 
-        function generateISSLocationHTML(locationData) {
+        async function generateISSLocationHTML(locationData) {
+            const lat = locationData.iss_position.latitude;
+            const lon = locationData.iss_position.longitude;
+
+            var country = await fetchLocationInfo(lat, lon);
+            country = country || 'None';
             return `
                 <h2>Coordinates:</h2>
-                <p>Latitude: ${locationData.iss_position.latitude}</p>
-                <p>Longitude: ${locationData.iss_position.longitude}</p>
+                <p>Latitude: ${lat}</p>
+                <p>Longitude: ${lon}</p>
+                <p>Country: ${country}</p>
             `;
-        }
+        } 
 
         function generatePeopleInSpaceHTML(peopleData) {
             const numberOfPeople = peopleData.number;
