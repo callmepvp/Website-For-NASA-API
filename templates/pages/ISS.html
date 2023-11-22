@@ -15,17 +15,18 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
 
+    <h1 id="mainText">Live ISS Data</h1>
     
     <div class="container">
         <div class="box" id="issLocationBox">
-            <h1>ISS Location</h1>
+            <h1>Location</h1>
             
         </div>
 
         <div id="map"></div>
 
         <div class="box" id="peopleInSpaceBox">
-            <h1>People in Space</h1>
+            <h1>People</h1>
         </div>
     </div>
 
@@ -124,7 +125,7 @@
             const numberOfPeople = peopleData.number;
             const peopleList = peopleData.people.map(person => `<p>${person.name}</p>`).join('');
             return `
-                <h2>Number: ${numberOfPeople}</h2>
+                <h2>People: ${numberOfPeople}</h2>
                 ${peopleList}
             `;
         }

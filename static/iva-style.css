@@ -1,23 +1,49 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    margin: 0; 
 }
 
 h1 {
-    color: #333;
+    transform: scale(1.5);
+    color: #FFFFFF;
+    background: black;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #1CDEDB, 0 0 30px #1CDEDB, 0 0 15px #1CDEDB, 0 0 8px #1CDEDB, 0 0 10px #1CDEDB;
 }
 
 form {
     margin-top: 20px;
+
+}
+
+#showButton{
+    padding: 4px 16px; 
+    border: none;
+    border-radius: 5px;
+}
+
+#keywordInput {
+    padding: 4px 16px; 
+    border: none;
+    border-radius: 5px;
 }
 
 #nasa-iva-results {
     margin-top: 20px;
+    text-align: left;
 }
 
 .nasa-iva-item {
     display: inline-block;
     margin: 10px;
+    text-align: center; 
 }
 
 .nasa-iva-item img {

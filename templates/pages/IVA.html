@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>IVA Search</title>
-    <link rel="stylesheet" href="iva-style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='iva-style.css') }}">
 </head>
 <body>
 
+    <div id="fade-container"></div>
     <h1>NASA IVA Search</h1>
 
     <form id="keywordForm">
         <label for="keywordInput">Enter a keyword:</label>
         <input type="text" id="keywordInput" name="keywordInput" required>
-        <button type="button" onclick="fetchNASAIVA()">Search NASA IVA</button>
+        <button id="showButton" type="button" onclick="fetchNASAIVA()">Search NASA IVA</button>
     </form>
 
     <div id="nasa-iva-results">
@@ -20,6 +21,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
+
         function fetchNASAIVA() {
             const apiKey = 'xOJtXktaBxgpQRQyeACT0dblt2j9xDsOba6uKdLS';
             const keywordInput = document.getElementById('keywordInput').value;
